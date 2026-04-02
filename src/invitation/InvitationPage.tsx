@@ -1,4 +1,4 @@
-﻿import type { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { INVITATION_IMAGES, MAPS_URL } from './constants'
 
 function TopNav() {
@@ -135,7 +135,7 @@ function PhotosSection() {
             <div className="absolute inset-0 overflow-hidden">
               <img
                 alt="Sargis and Alyona"
-                className="absolute left-[-16.67%] top-0 h-full w-[133.33%] max-w-none"
+                className="absolute inset-0 size-full max-w-none object-cover object-center"
                 src={INVITATION_IMAGES.couplePortrait}
               />
             </div>

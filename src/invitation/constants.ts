@@ -1,4 +1,4 @@
-/** Remote assets from Figma export (valid ~7 days); replace with local files for production. */
+/** Icons: Figma MCP assets (~7 days). Couple photos: local public assets. */
 export const INVITATION_IMAGES = {
   ringIcon:
     'https://www.figma.com/api/mcp/asset/4715ff9d-85b6-4925-8448-7212b936b2ce',
@@ -8,10 +8,8 @@ export const INVITATION_IMAGES = {
     'https://www.figma.com/api/mcp/asset/bb023c2a-5764-4898-b688-3cfd1b4eebcf',
   iconLocation:
     'https://www.figma.com/api/mcp/asset/4c29865e-0d55-41ee-a2c2-3c991550402e',
-  couplePortrait:
-    'https://www.figma.com/api/mcp/asset/d92b61fe-f329-4815-b69c-8c26a46ab0f3',
-  coupleDetail:
-    'https://www.figma.com/api/mcp/asset/2f47bed6-98de-4aa3-b0ec-64a806f6ba18',
+  couplePortrait: '/couple-photo.png',
+  coupleDetail: '/couple-detail.png',
 } as const
 
 export const MAPS_URL =
