@@ -194,7 +194,7 @@ function FooterBlock() {
         </p>
       </div>
       <div className="pt-4">
-        <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[rgba(176,168,150,0.6)]">
+        <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[#8c7a4d]">
           SARGIS & ALYONA — MMXXIV
         </p>
       </div>
