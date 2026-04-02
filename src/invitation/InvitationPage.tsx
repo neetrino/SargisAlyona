@@ -210,7 +210,7 @@ export function InvitationPage() {
       data-node-id="1:2"
     >
       <TopNav />
-      <main className="flex w-full shrink-0 flex-col items-center pb-40 pt-32">
+      <main className="flex w-full shrink-0 flex-col items-center pb-12 pt-32">
         <IntroSection />
         <EventDetailsSection />
         <div className="flex w-full max-w-[326px] flex-col items-center gap-16 px-0">
