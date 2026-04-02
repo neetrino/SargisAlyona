@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+﻿import type { ReactNode } from 'react'
 import { INVITATION_IMAGES, MAPS_URL } from './constants'
 
 function TopNav() {
@@ -118,9 +118,6 @@ function EventDetailsSection() {
             Ք.Մասիս, Էջմիածնի խճուղի 2/10
           </p>
         </DetailBlock>
-        <p className="pt-2 text-center font-sans text-[16px] italic leading-6 tracking-[0.13px] text-[#8c7a4d]">
-          Սիրով՝ Սարգիս & Ալյոնա
-        </p>
       </div>
     </section>
   )
