@@ -22,7 +22,7 @@ function TopNav() {
 function IntroSection() {
   return (
     <section
-      className="flex w-full flex-col items-center px-8 pb-32 "
+      className="flex w-full flex-col items-center px-8 pb-12"
       data-name="Section 1: Intro & Rings"
     >
       <div className="flex flex-col items-start pb-16">
