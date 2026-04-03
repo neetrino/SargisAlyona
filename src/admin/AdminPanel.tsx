@@ -107,7 +107,7 @@ export function AdminPanel() {
   if (checkingAuth) {
     return (
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] items-center justify-center bg-[#faf6f8] px-6">
-        <p className="text-center font-sans text-[13px] text-[#8e8574]">
+        <p className="text-center font-sans text-[13px] text-[#5c5347]">
           Ստուգվում է ադմինի մուտքը...
         </p>
       </div>
@@ -119,7 +119,7 @@ export function AdminPanel() {
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] flex-col justify-center bg-[#faf6f8] px-6">
         <div className="rounded-[28px] bg-white px-6 py-8 shadow-sm">
           <p
-            className="mb-2 text-center font-serif text-[11px] uppercase tracking-[4px] text-[rgba(92,78,48,0.6)]"
+            className="mb-2 text-center font-serif text-[11px] uppercase tracking-[4px] text-[#5c4e30]"
             style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
             ԱԴՄԻՆ
@@ -130,7 +130,7 @@ export function AdminPanel() {
           >
             Ադմինի մուտք
           </h1>
-          <p className="mt-2 text-center font-sans text-[13px] text-[#8e8574]">
+          <p className="mt-2 text-center font-sans text-[13px] text-[#5c5347]">
             Շարունակելու համար մուտքագրեք ադմինի մուտքանունն ու գաղտնաբառը։
           </p>
 
@@ -172,7 +172,7 @@ export function AdminPanel() {
     <div className="mx-auto flex min-h-screen w-full max-w-[390px] flex-col bg-[#faf6f8]">
       <div className="bg-[#faf6f8] px-6 pb-4 pt-10">
         <p
-          className="mb-1 text-center font-serif text-[11px] uppercase tracking-[4px] text-[rgba(92,78,48,0.6)]"
+          className="mb-1 text-center font-serif text-[11px] uppercase tracking-[4px] text-[#5c4e30]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
           ԱԴՄԻՆ
@@ -183,13 +183,13 @@ export function AdminPanel() {
         >
           Ադմինի վահանակ
         </h1>
-        <p className="mt-1 text-center font-sans text-[11px] uppercase tracking-[2px] text-[#8e8574]">
+        <p className="mt-1 text-center font-sans text-[11px] uppercase tracking-[2px] text-[#5c5347]">
           Հյուրերի ցանկ
         </p>
         <button
           type="button"
           onClick={handleLogout}
-          className="mx-auto mt-4 block rounded-full border border-[rgba(140,122,77,0.18)] px-4 py-2 font-sans text-[10px] uppercase tracking-[1.5px] text-[#8e8574]"
+          className="mx-auto mt-4 block rounded-full border border-[rgba(140,122,77,0.18)] px-4 py-2 font-sans text-[10px] uppercase tracking-[1.5px] text-[#5c5347]"
         >
           Դուրս գալ
         </button>
@@ -203,7 +203,7 @@ export function AdminPanel() {
           >
             {guests.length}
           </span>
-          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
+          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#5c5347]">
             Ընդամենը
           </span>
         </div>
@@ -214,7 +214,7 @@ export function AdminPanel() {
           >
             {coming}
           </span>
-          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
+          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#5c5347]">
             Գալու է
           </span>
         </div>
@@ -225,7 +225,7 @@ export function AdminPanel() {
           >
             {notComing}
           </span>
-          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
+          <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#5c5347]">
             Չի գալու
           </span>
         </div>
@@ -235,7 +235,7 @@ export function AdminPanel() {
 
       <div className="flex flex-col gap-2 px-6 pb-10">
         {loading && (
-          <p className="mt-8 text-center font-sans text-[13px] text-[#8e8574]">
+          <p className="mt-8 text-center font-sans text-[13px] text-[#5c5347]">
             Բեռնվում է...
           </p>
         )}
@@ -245,7 +245,7 @@ export function AdminPanel() {
           </p>
         )}
         {!loading && !error && guests.length === 0 && (
-          <p className="mt-8 text-center font-sans text-[13px] text-[#8e8574]">
+          <p className="mt-8 text-center font-sans text-[13px] text-[#5c5347]">
             Դեռ գրանցված հյուրեր չկան։
           </p>
         )}
@@ -255,14 +255,14 @@ export function AdminPanel() {
             className="flex items-center justify-between rounded-2xl bg-white px-5 py-4 shadow-sm"
           >
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#faf6f8] font-sans text-[11px] text-[#8e8574]">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#faf6f8] font-sans text-[11px] text-[#5c5347]">
                 {index + 1}
               </span>
               <div>
                 <p className="font-sans text-[14px] font-medium text-[#2d2d2b]">
                   {guest.firstName} {guest.lastName}
                 </p>
-                <p className="font-sans text-[10px] uppercase tracking-[1px] text-[#b0a893]">
+                <p className="font-sans text-[10px] uppercase tracking-[1px] text-[#6b6358]">
                   {new Date(guest.registeredAt).toLocaleDateString('hy-AM', {
                     month: 'short',
                     day: 'numeric',
