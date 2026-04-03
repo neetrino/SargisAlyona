@@ -1,4 +1,5 @@
 import { promises as fs } from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { Redis } from '@upstash/redis'
 
@@ -24,7 +25,8 @@ export class GuestStoreConfigError extends Error {
 }
 
 const GUESTS_KEY = 'guests'
-const guestsFile = path.join(process.cwd(), 'guests.json')
+const projectGuestsFile = path.join(process.cwd(), 'guests.json')
+const tempGuestsFile = path.join(os.tmpdir(), 'ed-guests.json')
 
 let redis: Redis | null = null
 
@@ -46,17 +48,17 @@ function isVercelProduction() {
   return process.env.VERCEL === '1' && process.env.NODE_ENV === 'production'
 }
 
-function assertWritableGuestStore() {
-  if (!getRedisClient() && isVercelProduction()) {
-    throw new GuestStoreConfigError(
-      'Missing Upstash Redis configuration for Vercel production.',
-    )
+function getGuestsFilePath() {
+  if (isVercelProduction()) {
+    return tempGuestsFile
   }
+
+  return projectGuestsFile
 }
 
 async function readGuestsFromFile() {
   try {
-    const raw = await fs.readFile(guestsFile, 'utf8')
+    const raw = await fs.readFile(getGuestsFilePath(), 'utf8')
     return JSON.parse(raw) as Guest[]
   } catch (error) {
     const nodeError = error as NodeJS.ErrnoException
@@ -69,7 +71,7 @@ async function readGuestsFromFile() {
 }
 
 async function writeGuestsToFile(guests: Guest[]) {
-  await fs.writeFile(guestsFile, JSON.stringify(guests, null, 2))
+  await fs.writeFile(getGuestsFilePath(), JSON.stringify(guests, null, 2))
 }
 
 export async function getGuests() {
@@ -79,14 +81,10 @@ export async function getGuests() {
     return ((await redisClient.get(GUESTS_KEY)) as Guest[] | null) ?? []
   }
 
-  assertWritableGuestStore()
-
   return readGuestsFromFile()
 }
 
 export async function addGuest(input: GuestInput): Promise<AddGuestResult> {
-  assertWritableGuestStore()
-
   const guests = await getGuests()
 
   const exists = guests.find(
