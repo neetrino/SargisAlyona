@@ -1,3 +1,6 @@
+'use client'
+/* eslint-disable @next/next/no-img-element */
+
 import { useState, type ReactNode } from 'react'
 import { INVITATION_IMAGES, MAPS_URL } from './constants'
 
@@ -12,7 +15,7 @@ function TopNav() {
           className="font-serif text-[14px] uppercase leading-5 tracking-[4.2px] text-[rgba(92,78,48,0.92)]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
-          S & A
+          Ս և Ա
         </p>
       </div>
     </div>
@@ -39,26 +42,26 @@ function IntroSection() {
           className="text-center font-serif text-[30px] font-normal leading-9 tracking-[-0.75px] text-[#2d2d2b]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
-          Sargis & Alyona
+          Սարգիս և Ալյոնա
         </h1>
       </div>
       <div className="mx-auto flex w-full max-w-[326px] flex-col gap-8 text-center">
         <p className="font-sans text-[13px] font-light leading-5 tracking-[0.13px] text-[rgba(58,47,27,0.96)]">
-          Սերը լուռ եկավ, բայց սրտում դարձավ ամենաբարձր ձայնը…
+          Սերը լուռ եկավ, բայց սրտում դարձավ ամենաբարձր ձայնը...
         </p>
         <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#4f493f]">
-          Մեր սերը սկսվեց որպես գեղեցիկ զգացում, իսկ այսօր դառնում է խոստում՝ լինելու
-          միասին, միշտ ու անվերջ…
+          Մեր սերը սկսվեց որպես գեղեցիկ զգացում, իսկ այսօր դառնում է խոստում`
+          լինելու միասին, միշտ ու անվերջ...
         </p>
         <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#4f493f]">
-          Այս հատուկ ու կախարդական օրը ուզում ենք կիսել հենց Ձեզ հետ, քանի որ Ձեր
-          ներկայությունն է մեր երջանկությունը դարձնում ամբողջական
+          Այս հատուկ ու կախարդական օրը ուզում ենք կիսել հենց Ձեզ հետ, քանի որ
+          Ձեր ներկայությունն է մեր երջանկությունը դարձնում ամբողջական։
         </p>
         <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#2d2d2b]">
           Սիրով հրավիրում ենք Ձեզ մեր նշանադրության արարողությանը։
         </p>
         <p className="font-sans text-[16px] italic leading-6 tracking-[0.13px] text-[#6f5d32]">
-          Սիրով՝ Սարգիս & Ալյոնա
+          Սիրով` Սարգիս և Ալյոնա
         </p>
       </div>
     </section>
@@ -94,28 +97,28 @@ function EventDetailsSection() {
       data-name="Section 2: Event Details"
     >
       <div className="mx-auto flex max-w-[384px] flex-col gap-[20px]">
-        <DetailBlock icon={INVITATION_IMAGES.iconCalendar} label="Date">
+        <DetailBlock icon={INVITATION_IMAGES.iconCalendar} label="Ամսաթիվ">
           <p className="text-center font-sans text-[18px] leading-7 text-[#2d2d2b]">
-            Շաբաթ, Մայիս 26, 2026
+            Շաբաթ, մայիսի 26, 2026
           </p>
         </DetailBlock>
-        <DetailBlock icon={INVITATION_IMAGES.iconClock} label="Time">
+        <DetailBlock icon={INVITATION_IMAGES.iconClock} label="Ժամ">
           <p
             className="text-center font-serif text-[18px] leading-7 text-[#2d2d2b]"
-            style={{ fontVariationSettings: "’CTGR’ 0, ‘wdth’ 100" }}
+            style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
             17:30
           </p>
         </DetailBlock>
-        <DetailBlock icon={INVITATION_IMAGES.iconLocation} label="Location">
+        <DetailBlock icon={INVITATION_IMAGES.iconLocation} label="Վայր">
           <p
             className="text-center font-serif text-[18px] leading-7 text-[#2d2d2b]"
-            style={{ fontVariationSettings: "’CTGR’ 0, ‘wdth’ 100" }}
+            style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
-            Mkrtchyan’s Hall
+            Մկրտչյանս Հոլ
           </p>
           <p className="text-center font-sans text-[11px] uppercase leading-[16.5px] tracking-[0.275px] text-[#4f493f]">
-            Ք.Մասիս, Էջմիածնի խճուղի 2/10
+            ք. Մասիս, Էջմիածնի խճուղի 2/10
           </p>
         </DetailBlock>
       </div>
@@ -134,7 +137,7 @@ function PhotosSection() {
           <div className="relative h-full w-full opacity-90">
             <div className="absolute inset-0 overflow-hidden">
               <img
-                alt="Sargis and Alyona"
+                alt="Սարգիս և Ալյոնա"
                 className="absolute inset-0 size-full max-w-none object-cover object-center"
                 src={INVITATION_IMAGES.couplePortrait}
               />
@@ -149,7 +152,7 @@ function PhotosSection() {
             <div className="relative h-[244.5px] w-full opacity-90">
               <div className="absolute inset-0 overflow-hidden">
                 <img
-                  alt="Couple detail"
+                  alt="Զույգի լուսանկար"
                   className="absolute left-0 top-0 size-full max-w-none object-cover"
                   src={INVITATION_IMAGES.coupleDetail}
                 />
@@ -170,7 +173,7 @@ function CtaButton() {
       href={MAPS_URL}
       rel="noreferrer"
       target="_blank"
-      data-name="Section - Call to Action → Button"
+      data-name="Section - Call to Action -> Button"
     >
       <span className="text-center font-sans text-[10px] font-normal uppercase leading-[15px] tracking-[2.5px] text-[#6f5d32]">
         ՀԱՍՑԵ
@@ -190,12 +193,12 @@ function FooterBlock() {
           className="font-serif text-[12px] leading-4 tracking-[1.2px] text-[rgba(92,78,48,0.78)]"
           style={{ fontVariationSettings: "'CTGR' 100, 'wdth' 100" }}
         >
-          S & A
+          Ս և Ա
         </p>
       </div>
       <div className="pt-4">
         <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[#6f5d32]">
-          SARGIS & ALYONA — MMXXIV
+          ՍԱՐԳԻՍ ԵՎ ԱԼՅՈՆԱ
         </p>
       </div>
     </footer>
@@ -251,8 +254,8 @@ function RsvpSection() {
           </p>
           <p className="font-sans text-[13px] leading-5 text-[#4f493f]">
             {attending
-              ? 'Ուրախ ենք, որ կգաք։ Անհամբեր սպասում ենք Ձեզ 🤍'
-              : 'Հասկանում ենք։ Ուրախ կլինենք տեսնել Ձեզ հաջորդ անգամ 🤍'}
+              ? 'Ուրախ ենք, որ կգաք։ Անհամբեր սպասում ենք Ձեզ։'
+              : 'Հասկանում ենք։ Ուրախ կլինենք տեսնել Ձեզ հաջորդ անգամ։'}
           </p>
           <div className="h-px w-16 bg-[rgba(140,122,77,0.3)]" />
         </div>
@@ -269,7 +272,7 @@ function RsvpSection() {
             className="font-serif text-[18px] font-normal tracking-[-0.3px] text-[#2d2d2b]"
             style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
-            Հաստատե՛ք մասնակցությունը
+            Հաստատեք մասնակցությունը
           </p>
           <p className="font-sans text-[11px] leading-5 text-[#8e8574]">
             Խնդրում ենք պատասխանել մինչև մայիսի 10-ը
@@ -279,6 +282,7 @@ function RsvpSection() {
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
           <div className="flex flex-col gap-3">
             <input
+              suppressHydrationWarning
               type="text"
               placeholder="Անուն"
               value={firstName}
@@ -286,6 +290,7 @@ function RsvpSection() {
               className="w-full rounded-2xl border border-[rgba(140,122,77,0.25)] bg-white px-4 py-3.5 font-sans text-[14px] text-[#2d2d2b] placeholder-[#c4bbaa] outline-none focus:border-[rgba(140,122,77,0.6)] focus:ring-0"
             />
             <input
+              suppressHydrationWarning
               type="text"
               placeholder="Ազգանուն"
               value={lastName}
@@ -296,6 +301,7 @@ function RsvpSection() {
 
           <div className="flex gap-3">
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => setAttending(true)}
               className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
@@ -307,6 +313,7 @@ function RsvpSection() {
               Կգամ
             </button>
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => setAttending(false)}
               className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
@@ -324,6 +331,7 @@ function RsvpSection() {
           )}
 
           <button
+            suppressHydrationWarning
             type="submit"
             disabled={!canSubmit || status === 'loading'}
             className="mt-1 flex h-[45px] w-full items-center justify-center rounded-[80px] border border-[rgba(140,122,77,0.3)] font-sans text-[10px] uppercase tracking-[2.5px] text-[#6f5d32] transition-opacity disabled:opacity-40"
