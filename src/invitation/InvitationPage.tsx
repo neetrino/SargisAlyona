@@ -9,7 +9,7 @@ function TopNav() {
     >
       <div className="flex w-full max-w-[1536px] items-start justify-center px-8 py-8">
         <p
-          className="font-serif text-[14px] uppercase leading-5 tracking-[4.2px] text-[rgba(140,122,77,0.8)]"
+          className="font-serif text-[14px] uppercase leading-5 tracking-[4.2px] text-[rgba(92,78,48,0.92)]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
           S & A
@@ -43,21 +43,21 @@ function IntroSection() {
         </h1>
       </div>
       <div className="mx-auto flex w-full max-w-[326px] flex-col gap-8 text-center">
-        <p className="font-sans text-[13px] font-light leading-5 tracking-[0.13px] text-[rgba(140,122,77,0.7)]">
+        <p className="font-sans text-[13px] font-light leading-5 tracking-[0.13px] text-[rgba(58,47,27,0.96)]">
           Սերը լուռ եկավ, բայց սրտում դարձավ ամենաբարձր ձայնը…
         </p>
-        <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#6b6659]">
+        <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#4f493f]">
           Մեր սերը սկսվեց որպես գեղեցիկ զգացում, իսկ այսօր դառնում է խոստում՝ լինելու
           միասին, միշտ ու անվերջ…
         </p>
-        <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#6b6659]">
+        <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#4f493f]">
           Այս հատուկ ու կախարդական օրը ուզում ենք կիսել հենց Ձեզ հետ, քանի որ Ձեր
           ներկայությունն է մեր երջանկությունը դարձնում ամբողջական
         </p>
         <p className="font-sans text-[13px] leading-5 tracking-[0.13px] text-[#2d2d2b]">
           Սիրով հրավիրում ենք Ձեզ մեր նշանադրության արարողությանը։
         </p>
-        <p className="font-sans text-[16px] italic leading-6 tracking-[0.13px] text-[#8c7a4d]">
+        <p className="font-sans text-[16px] italic leading-6 tracking-[0.13px] text-[#6f5d32]">
           Սիրով՝ Սարգիս & Ալյոնա
         </p>
       </div>
@@ -77,7 +77,7 @@ function DetailBlock(props: {
       </div>
       <div className="flex flex-col items-start pt-4">
         <div className="flex flex-col items-center gap-2">
-          <p className="text-center font-[family-name:var(--font-label)] text-[9px] font-normal uppercase leading-[13.5px] tracking-[2.7px] text-[#b0a896]">
+          <p className="text-center font-[family-name:var(--font-label)] text-[9px] font-normal uppercase leading-[13.5px] tracking-[2.7px] text-[#8e8574]">
             {props.label}
           </p>
           <div className="flex flex-col items-center gap-1">{props.children}</div>
@@ -114,7 +114,7 @@ function EventDetailsSection() {
           >
             Mkrtchyan’s Hall
           </p>
-          <p className="text-center font-sans text-[11px] uppercase leading-[16.5px] tracking-[0.275px] text-[#6b6659]">
+          <p className="text-center font-sans text-[11px] uppercase leading-[16.5px] tracking-[0.275px] text-[#4f493f]">
             Ք.Մասիս, Էջմիածնի խճուղի 2/10
           </p>
         </DetailBlock>
@@ -172,7 +172,7 @@ function CtaButton() {
       target="_blank"
       data-name="Section - Call to Action → Button"
     >
-      <span className="text-center font-sans text-[10px] font-normal uppercase leading-[15px] tracking-[2.5px] text-[#8c7a4d]">
+      <span className="text-center font-sans text-[10px] font-normal uppercase leading-[15px] tracking-[2.5px] text-[#6f5d32]">
         ՀԱՍՑԵ
       </span>
     </a>
@@ -187,14 +187,14 @@ function FooterBlock() {
     >
       <div>
         <p
-          className="font-serif text-[12px] leading-4 tracking-[1.2px] text-[rgba(140,122,77,0.6)]"
+          className="font-serif text-[12px] leading-4 tracking-[1.2px] text-[rgba(92,78,48,0.78)]"
           style={{ fontVariationSettings: "'CTGR' 100, 'wdth' 100" }}
         >
           S & A
         </p>
       </div>
       <div className="pt-4">
-        <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[#8c7a4d]">
+        <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[#6f5d32]">
           SARGIS & ALYONA — MMXXIV
         </p>
       </div>
