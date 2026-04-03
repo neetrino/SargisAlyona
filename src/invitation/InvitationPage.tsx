@@ -185,18 +185,10 @@ function CtaButton() {
 function FooterBlock() {
   return (
     <footer
-      className="flex w-full flex-col items-center gap-10 px-8 pb-8"
+      className="flex w-full flex-col items-center gap-4 px-8 pb-8"
       data-name="Footer Shell"
     >
       <div>
-        <p
-          className="font-serif text-[12px] leading-4 tracking-[1.2px] text-[#5c4e30]"
-          style={{ fontVariationSettings: "'CTGR' 100, 'wdth' 100" }}
-        >
-          Ս & Ա
-        </p>
-      </div>
-      <div className="pt-4">
         <p className="font-sans text-[8px] uppercase leading-3 tracking-[2.4px] text-[#4a3e21]">
           ՍԱՐԳԻՍ ԵՎ ԱԼՅՈՆԱ
         </p>
@@ -279,7 +271,7 @@ function RsvpSection() {
   }
 
   return (
-    <section className="w-full bg-[#faf6f8] px-8 pb-16 pt-4">
+    <section className="w-full bg-[#faf6f8] px-8 pb-6 pt-4">
       <div className="mx-auto flex max-w-[326px] flex-col items-center gap-6">
         <div className="flex flex-col items-center gap-2">
           <div className="h-px w-16 bg-[rgba(140,122,77,0.3)]" />
