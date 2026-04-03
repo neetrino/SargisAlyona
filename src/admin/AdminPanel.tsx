@@ -34,14 +34,14 @@ export function AdminPanel() {
       }
 
       if (!response.ok) {
-        throw new Error('Failed to load guests')
+        throw new Error('Չհաջողվեց բեռնել հյուրերի ցանկը')
       }
 
       const data = (await response.json()) as Guest[]
       setGuests(data)
       setAuthenticated(true)
     } catch {
-      setError('Failed to load guests')
+      setError('Չհաջողվեց բեռնել հյուրերի ցանկը')
     } finally {
       setLoading(false)
       setCheckingAuth(false)
@@ -68,18 +68,18 @@ export function AdminPanel() {
       })
 
       if (response.status === 401) {
-        setError('Invalid admin username or password')
+        setError('Ադմինի մուտքանունը կամ գաղտնաբառը սխալ է')
         return
       }
 
       if (!response.ok) {
-        throw new Error('Login failed')
+        throw new Error('Մուտքը չհաջողվեց')
       }
 
       setPassword('')
       await loadGuests()
     } catch {
-      setError('Login failed')
+      setError('Մուտքը չհաջողվեց')
       setCheckingAuth(false)
     } finally {
       setLoginLoading(false)
@@ -108,7 +108,7 @@ export function AdminPanel() {
     return (
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] items-center justify-center bg-[#faf6f8] px-6">
         <p className="text-center font-sans text-[13px] text-[#8e8574]">
-          Checking admin access...
+          Ստուգվում է ադմինի մուտքը...
         </p>
       </div>
     )
@@ -122,29 +122,29 @@ export function AdminPanel() {
             className="mb-2 text-center font-serif text-[11px] uppercase tracking-[4px] text-[rgba(92,78,48,0.6)]"
             style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
-            ADMIN
+            ԱԴՄԻՆ
           </p>
           <h1
             className="text-center font-serif text-[24px] font-normal tracking-[-0.5px] text-[#2d2d2b]"
             style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
           >
-            Admin Login
+            Ադմինի մուտք
           </h1>
           <p className="mt-2 text-center font-sans text-[13px] text-[#8e8574]">
-            Enter the admin username and password to continue.
+            Շարունակելու համար մուտքագրեք ադմինի մուտքանունն ու գաղտնաբառը։
           </p>
 
           <form className="mt-6 flex flex-col gap-3" onSubmit={handleLogin}>
             <input
               className="h-12 rounded-2xl border border-[rgba(140,122,77,0.18)] px-4 font-sans text-[14px] text-[#2d2d2b] outline-none"
-              placeholder="Username"
+              placeholder="Մուտքանուն"
               value={username}
               onChange={event => setUsername(event.target.value)}
               autoComplete="username"
             />
             <input
               className="h-12 rounded-2xl border border-[rgba(140,122,77,0.18)] px-4 font-sans text-[14px] text-[#2d2d2b] outline-none"
-              placeholder="Password"
+              placeholder="Գաղտնաբառ"
               type="password"
               value={password}
               onChange={event => setPassword(event.target.value)}
@@ -160,7 +160,7 @@ export function AdminPanel() {
               className="mt-2 h-12 rounded-2xl bg-[#2d2d2b] font-sans text-[13px] font-medium uppercase tracking-[2px] text-white disabled:opacity-60"
               disabled={loginLoading}
             >
-              {loginLoading ? 'Signing in...' : 'Sign in'}
+              {loginLoading ? 'Մուտք է կատարվում...' : 'Մուտք գործել'}
             </button>
           </form>
         </div>
@@ -175,23 +175,23 @@ export function AdminPanel() {
           className="mb-1 text-center font-serif text-[11px] uppercase tracking-[4px] text-[rgba(92,78,48,0.6)]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
-          ADMIN
+          ԱԴՄԻՆ
         </p>
         <h1
           className="text-center font-serif text-[22px] font-normal tracking-[-0.5px] text-[#2d2d2b]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
-          Admin Dashboard
+          Ադմինի վահանակ
         </h1>
         <p className="mt-1 text-center font-sans text-[11px] uppercase tracking-[2px] text-[#8e8574]">
-          Guest List
+          Հյուրերի ցանկ
         </p>
         <button
           type="button"
           onClick={handleLogout}
           className="mx-auto mt-4 block rounded-full border border-[rgba(140,122,77,0.18)] px-4 py-2 font-sans text-[10px] uppercase tracking-[1.5px] text-[#8e8574]"
         >
-          Log out
+          Դուրս գալ
         </button>
       </div>
 
@@ -204,7 +204,7 @@ export function AdminPanel() {
             {guests.length}
           </span>
           <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
-            Total
+            Ընդամենը
           </span>
         </div>
         <div className="flex flex-1 flex-col items-center rounded-2xl bg-white py-4 shadow-sm">
@@ -215,7 +215,7 @@ export function AdminPanel() {
             {coming}
           </span>
           <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
-            Coming
+            Գալու է
           </span>
         </div>
         <div className="flex flex-1 flex-col items-center rounded-2xl bg-white py-4 shadow-sm">
@@ -226,7 +226,7 @@ export function AdminPanel() {
             {notComing}
           </span>
           <span className="mt-0.5 font-sans text-[9px] uppercase tracking-[2px] text-[#8e8574]">
-            Not Coming
+            Չի գալու
           </span>
         </div>
       </div>
@@ -236,7 +236,7 @@ export function AdminPanel() {
       <div className="flex flex-col gap-2 px-6 pb-10">
         {loading && (
           <p className="mt-8 text-center font-sans text-[13px] text-[#8e8574]">
-            Loading...
+            Բեռնվում է...
           </p>
         )}
         {error && (
@@ -246,7 +246,7 @@ export function AdminPanel() {
         )}
         {!loading && !error && guests.length === 0 && (
           <p className="mt-8 text-center font-sans text-[13px] text-[#8e8574]">
-            No guests registered yet.
+            Դեռ գրանցված հյուրեր չկան։
           </p>
         )}
         {guests.map((guest, index) => (
@@ -279,7 +279,7 @@ export function AdminPanel() {
                   : 'bg-[#fdf0f0] text-[#b85c5c]'
               }`}
             >
-              {guest.attending ? 'Coming' : 'Not coming'}
+              {guest.attending ? 'Գալու է' : 'Չի գալու'}
             </span>
           </div>
         ))}
