@@ -1,14 +1,19 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import {
   GuestStoreConfigError,
   addGuest,
   getGuests,
   type GuestInput,
 } from '@/src/server/guest-store'
+import { isAdminAuthenticated } from '@/src/server/admin-auth'
 
 export const runtime = 'nodejs'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!isAdminAuthenticated(request)) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
+
   try {
     const guests = await getGuests()
     return NextResponse.json(guests)
