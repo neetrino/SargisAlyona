@@ -15,7 +15,7 @@ function TopNav() {
           className="font-serif text-[14px] uppercase leading-5 tracking-[4.2px] text-[rgba(92,78,48,0.92)]"
           style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
         >
-          Ս և Ա
+          Ս & Ա
         </p>
       </div>
     </div>
@@ -193,7 +193,7 @@ function FooterBlock() {
           className="font-serif text-[12px] leading-4 tracking-[1.2px] text-[rgba(92,78,48,0.78)]"
           style={{ fontVariationSettings: "'CTGR' 100, 'wdth' 100" }}
         >
-          Ս և Ա
+          Ս & Ա
         </p>
       </div>
       <div className="pt-4">
@@ -212,22 +212,37 @@ function RsvpSection() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
-  const canSubmit = firstName.trim() && lastName.trim() && attending !== null
+  const canSubmit =
+    firstName.trim().length > 0 &&
+    lastName.trim().length > 0 &&
+    attending !== null
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!canSubmit) return
     setStatus('loading')
+    setErrorMsg('')
     try {
       const res = await fetch('/api/guests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName: firstName.trim(), lastName: lastName.trim(), attending }),
       })
+      let data: { error?: string } | null = null
+
+      try {
+        data = (await res.json()) as { error?: string }
+      } catch {
+        data = null
+      }
+
       if (!res.ok) {
-        const data = await res.json()
-        if (data.error === 'already_registered') {
+        if (data?.error === 'already_registered') {
           setErrorMsg('Դուք արդեն գրանցված եք')
+        } else if (data?.error === 'storage_not_configured') {
+          setErrorMsg('\u0533\u0580\u0561\u0576\u0581\u0578\u0582\u0574\u0578\u0582\u0576\u0568 \u056a\u0561\u0574\u0561\u0576\u0561\u056f\u0561\u057e\u0578\u0580\u0561\u057a\u0565\u057d \u0570\u0561\u057d\u0561\u0576\u0565\u056c\u056b \u0579\u0567')
+        } else if (res.status === 400) {
+          setErrorMsg('\u053c\u0580\u0561\u0581\u0580\u0565\u0584 \u0562\u0578\u056c\u0578\u0580 \u0564\u0561\u0577\u057f\u0565\u0580\u0568')
         } else {
           setErrorMsg('Սխալ տեղի ունեցավ')
         }
@@ -286,7 +301,10 @@ function RsvpSection() {
               type="text"
               placeholder="Անուն"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={e => {
+                setFirstName(e.target.value)
+                if (status === 'error') setStatus('idle')
+              }}
               className="w-full rounded-2xl border border-[rgba(140,122,77,0.25)] bg-white px-4 py-3.5 font-sans text-[14px] text-[#2d2d2b] placeholder-[#c4bbaa] outline-none focus:border-[rgba(140,122,77,0.6)] focus:ring-0"
             />
             <input
@@ -294,7 +312,10 @@ function RsvpSection() {
               type="text"
               placeholder="Ազգանուն"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={e => {
+                setLastName(e.target.value)
+                if (status === 'error') setStatus('idle')
+              }}
               className="w-full rounded-2xl border border-[rgba(140,122,77,0.25)] bg-white px-4 py-3.5 font-sans text-[14px] text-[#2d2d2b] placeholder-[#c4bbaa] outline-none focus:border-[rgba(140,122,77,0.6)] focus:ring-0"
             />
           </div>
@@ -303,7 +324,10 @@ function RsvpSection() {
             <button
               suppressHydrationWarning
               type="button"
-              onClick={() => setAttending(true)}
+              onClick={() => {
+                setAttending(true)
+                if (status === 'error') setStatus('idle')
+              }}
               className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
                 attending === true
                   ? 'border-[#6f5d32] bg-[#6f5d32] text-white'
@@ -315,7 +339,10 @@ function RsvpSection() {
             <button
               suppressHydrationWarning
               type="button"
-              onClick={() => setAttending(false)}
+              onClick={() => {
+                setAttending(false)
+                if (status === 'error') setStatus('idle')
+              }}
               className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
                 attending === false
                   ? 'border-[#6f5d32] bg-[#6f5d32] text-white'
