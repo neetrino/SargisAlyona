@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Սարգիս և Ալյոնա',
-  description: 'Հարսանեկան հրավեր և մասնակցության հաստատում',
+  description: 'Նշանադրության հրավերք և մասնակցության հաստատում',
 }
 
 export default function RootLayout({
