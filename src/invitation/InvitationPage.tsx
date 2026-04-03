@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { INVITATION_IMAGES, MAPS_URL } from './constants'
 
 function TopNav() {
@@ -202,6 +202,140 @@ function FooterBlock() {
   )
 }
 
+function RsvpSection() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [attending, setAttending] = useState<boolean | null>(null)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const canSubmit = firstName.trim() && lastName.trim() && attending !== null
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!canSubmit) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/guests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName: firstName.trim(), lastName: lastName.trim(), attending }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        if (data.error === 'already_registered') {
+          setErrorMsg('Դուք արդեն գրանցված եք')
+        } else {
+          setErrorMsg('Սխալ տեղի ունեցավ')
+        }
+        setStatus('error')
+        return
+      }
+      setStatus('success')
+    } catch {
+      setErrorMsg('Կապի խնդիր կա')
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <section className="w-full bg-[#faf6f8] px-8 pb-16 pt-8">
+        <div className="mx-auto flex max-w-[326px] flex-col items-center gap-4 text-center">
+          <div className="h-px w-16 bg-[rgba(140,122,77,0.3)]" />
+          <p
+            className="font-serif text-[22px] text-[#2d2d2b]"
+            style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
+          >
+            Շնորհակալություն
+          </p>
+          <p className="font-sans text-[13px] leading-5 text-[#4f493f]">
+            {attending
+              ? 'Ուրախ ենք, որ կգաք։ Անհամբեր սպասում ենք Ձեզ 🤍'
+              : 'Հասկանում ենք։ Ուրախ կլինենք տեսնել Ձեզ հաջորդ անգամ 🤍'}
+          </p>
+          <div className="h-px w-16 bg-[rgba(140,122,77,0.3)]" />
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="w-full bg-[#faf6f8] px-8 pb-16 pt-4">
+      <div className="mx-auto flex max-w-[326px] flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-px w-16 bg-[rgba(140,122,77,0.3)]" />
+          <p
+            className="font-serif text-[18px] font-normal tracking-[-0.3px] text-[#2d2d2b]"
+            style={{ fontVariationSettings: "'CTGR' 0, 'wdth' 100" }}
+          >
+            Հաստատե՛ք մասնակցությունը
+          </p>
+          <p className="font-sans text-[11px] leading-5 text-[#8e8574]">
+            Խնդրում ենք պատասխանել մինչև մայիսի 10-ը
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
+          <div className="flex flex-col gap-3">
+            <input
+              type="text"
+              placeholder="Անուն"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+              className="w-full rounded-2xl border border-[rgba(140,122,77,0.25)] bg-white px-4 py-3.5 font-sans text-[14px] text-[#2d2d2b] placeholder-[#c4bbaa] outline-none focus:border-[rgba(140,122,77,0.6)] focus:ring-0"
+            />
+            <input
+              type="text"
+              placeholder="Ազգանուն"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+              className="w-full rounded-2xl border border-[rgba(140,122,77,0.25)] bg-white px-4 py-3.5 font-sans text-[14px] text-[#2d2d2b] placeholder-[#c4bbaa] outline-none focus:border-[rgba(140,122,77,0.6)] focus:ring-0"
+            />
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => setAttending(true)}
+              className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
+                attending === true
+                  ? 'border-[#6f5d32] bg-[#6f5d32] text-white'
+                  : 'border-[rgba(140,122,77,0.3)] bg-white text-[#6f5d32]'
+              }`}
+            >
+              Կգամ
+            </button>
+            <button
+              type="button"
+              onClick={() => setAttending(false)}
+              className={`flex-1 rounded-2xl border py-3.5 font-sans text-[12px] uppercase tracking-[2px] transition-colors ${
+                attending === false
+                  ? 'border-[#6f5d32] bg-[#6f5d32] text-white'
+                  : 'border-[rgba(140,122,77,0.3)] bg-white text-[#6f5d32]'
+              }`}
+            >
+              Չեմ գա
+            </button>
+          </div>
+
+          {status === 'error' && (
+            <p className="text-center font-sans text-[12px] text-[#b85c5c]">{errorMsg}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={!canSubmit || status === 'loading'}
+            className="mt-1 flex h-[45px] w-full items-center justify-center rounded-[80px] border border-[rgba(140,122,77,0.3)] font-sans text-[10px] uppercase tracking-[2.5px] text-[#6f5d32] transition-opacity disabled:opacity-40"
+          >
+            {status === 'loading' ? '...' : 'Հաստատել'}
+          </button>
+        </form>
+      </div>
+    </section>
+  )
+}
+
 export function InvitationPage() {
   return (
     <div
@@ -217,6 +351,7 @@ export function InvitationPage() {
           <PhotosSection />
           <CtaButton />
         </div>
+        <RsvpSection />
       </main>
       <FooterBlock />
     </div>
