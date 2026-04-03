@@ -16,6 +16,13 @@ type AddGuestResult =
   | { guest: Guest; error?: never }
   | { guest?: never; error: 'already_registered' }
 
+export class GuestStoreConfigError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'GuestStoreConfigError'
+  }
+}
+
 const GUESTS_KEY = 'guests'
 const guestsFile = path.join(process.cwd(), 'guests.json')
 
@@ -33,6 +40,18 @@ function getRedisClient() {
   }
 
   return null
+}
+
+function isVercelProduction() {
+  return process.env.VERCEL === '1' && process.env.NODE_ENV === 'production'
+}
+
+function assertWritableGuestStore() {
+  if (!getRedisClient() && isVercelProduction()) {
+    throw new GuestStoreConfigError(
+      'Missing Upstash Redis configuration for Vercel production.',
+    )
+  }
 }
 
 async function readGuestsFromFile() {
@@ -60,10 +79,14 @@ export async function getGuests() {
     return ((await redisClient.get(GUESTS_KEY)) as Guest[] | null) ?? []
   }
 
+  assertWritableGuestStore()
+
   return readGuestsFromFile()
 }
 
 export async function addGuest(input: GuestInput): Promise<AddGuestResult> {
+  assertWritableGuestStore()
+
   const guests = await getGuests()
 
   const exists = guests.find(

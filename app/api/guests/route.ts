@@ -1,11 +1,27 @@
 import { NextResponse } from 'next/server'
-import { addGuest, getGuests, type GuestInput } from '@/src/server/guest-store'
+import {
+  GuestStoreConfigError,
+  addGuest,
+  getGuests,
+  type GuestInput,
+} from '@/src/server/guest-store'
 
 export const runtime = 'nodejs'
 
 export async function GET() {
-  const guests = await getGuests()
-  return NextResponse.json(guests)
+  try {
+    const guests = await getGuests()
+    return NextResponse.json(guests)
+  } catch (error) {
+    if (error instanceof GuestStoreConfigError) {
+      return NextResponse.json(
+        { error: 'storage_not_configured' },
+        { status: 503 },
+      )
+    }
+
+    throw error
+  }
 }
 
 export async function POST(request: Request) {
@@ -15,15 +31,26 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
   }
 
-  const result = await addGuest({
-    firstName: payload.firstName,
-    lastName: payload.lastName,
-    attending: payload.attending,
-  })
+  try {
+    const result = await addGuest({
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      attending: payload.attending,
+    })
 
-  if (result.error === 'already_registered') {
-    return NextResponse.json({ error: result.error }, { status: 409 })
+    if (result.error === 'already_registered') {
+      return NextResponse.json({ error: result.error }, { status: 409 })
+    }
+
+    return NextResponse.json(result.guest, { status: 201 })
+  } catch (error) {
+    if (error instanceof GuestStoreConfigError) {
+      return NextResponse.json(
+        { error: 'storage_not_configured' },
+        { status: 503 },
+      )
+    }
+
+    throw error
   }
-
-  return NextResponse.json(result.guest, { status: 201 })
 }
