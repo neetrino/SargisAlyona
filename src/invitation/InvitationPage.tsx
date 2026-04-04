@@ -99,7 +99,7 @@ function EventDetailsSection() {
       <div className="mx-auto flex max-w-[384px] flex-col gap-[20px]">
         <DetailBlock icon={INVITATION_IMAGES.iconCalendar} label="Ամսաթիվ">
           <p className="text-center font-sans text-[18px] leading-7 text-[#2d2d2b]">
-            Շաբաթ, մայիսի 26, 2026
+            Երեքշաբթի, մայիսի 26, 2026
           </p>
         </DetailBlock>
         <DetailBlock icon={INVITATION_IMAGES.iconClock} label="Ժամ">
